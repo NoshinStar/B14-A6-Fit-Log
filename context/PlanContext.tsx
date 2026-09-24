@@ -33,21 +33,28 @@ function loadFromStorage(key: string): Workout[] {
 }
 
 export function PlanProvider({ children }: { children: ReactNode }) {
-  const [todaysPlan, setTodaysPlan] = useState<Workout[]>(() =>
-  loadFromStorage(PLAN_KEY)
-);
-
-const [saved, setSaved] = useState<Workout[]>(() =>
-  loadFromStorage(SAVED_KEY)
-);
+  const [todaysPlan, setTodaysPlan] = useState<Workout[]>([]);
+const [saved, setSaved] = useState<Workout[]>([]);
+const [hydrated, setHydrated] = useState(false);
 
 useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+  setTodaysPlan(loadFromStorage(PLAN_KEY));
+  setSaved(loadFromStorage(SAVED_KEY));
+  setHydrated(true);
+}, []);
+
+useEffect(() => {
+  if (!hydrated) return;
+
   localStorage.setItem(PLAN_KEY, JSON.stringify(todaysPlan));
-}, [todaysPlan]);
+}, [todaysPlan, hydrated]);
 
 useEffect(() => {
+  if (!hydrated) return;
+
   localStorage.setItem(SAVED_KEY, JSON.stringify(saved));
-}, [saved]);
+}, [saved, hydrated]);
 
   const isInPlan = (id: number) => todaysPlan.some((w) => w.id === id);
   const isInSaved = (id: number) => saved.some((w) => w.id === id);

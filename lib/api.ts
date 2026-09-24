@@ -1,4 +1,5 @@
 const BASE_URL = "https://api.abcz.workers.dev/api/fitlog";
+import { notFound } from "next/navigation";
 
 export interface Workout {
   id: number;
@@ -22,7 +23,7 @@ export async function getAllWorkouts(): Promise<Workout[]> {
   return res.json();
 }
 
-import { notFound } from "next/navigation";
+
 
 export async function getWorkoutById(id: string): Promise<Workout> {
   const res = await fetch(`${BASE_URL}/${id}`, { cache: "no-store" });

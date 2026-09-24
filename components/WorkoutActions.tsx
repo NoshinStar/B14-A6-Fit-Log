@@ -21,6 +21,7 @@ export default function WorkoutActions({ workout }: { workout: Workout }) {
       >
         <Bookmark size={18} /> Save for later
       </button>
+      
     </div>
   );
 }

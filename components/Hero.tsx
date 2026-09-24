@@ -1,4 +1,5 @@
 import { Dumbbell } from "lucide-react";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -28,7 +29,7 @@ export default function Hero() {
 
       <div className="flex-1 flex justify-center">
         <div className="w-64 h-64 md:w-80 md:h-80 bg-gray-900 rounded-2xl flex items-center justify-center text-gray-600">
-          Hero Image
+          <img src="assets/banner.png" alt="Workout"></img>
         </div>
       </div>
     </section>
