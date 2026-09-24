@@ -20,7 +20,7 @@ export default function PlanCard({
 }: PlanCardProps) {
   return (
     <div className="flex items-center gap-4 bg-gray-900 rounded-xl p-4">
-      <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+      <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-0">
         <Image
           src={workout.image}
           alt={workout.name}

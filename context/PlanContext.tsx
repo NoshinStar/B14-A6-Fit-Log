@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { toast } from "react-toastify";
 import { Workout } from "@/lib/api";
 
@@ -19,10 +19,35 @@ interface PlanContextType {
 const PlanContext = createContext<PlanContextType | undefined>(undefined);
 
 const PLAN_LIMIT = 5;
+const PLAN_KEY = "fitlog_plan";
+const SAVED_KEY = "fitlog_saved";
+
+function loadFromStorage(key: string): Workout[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const stored = localStorage.getItem(key);
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+}
 
 export function PlanProvider({ children }: { children: ReactNode }) {
-  const [todaysPlan, setTodaysPlan] = useState<Workout[]>([]);
-  const [saved, setSaved] = useState<Workout[]>([]);
+  const [todaysPlan, setTodaysPlan] = useState<Workout[]>(() =>
+  loadFromStorage(PLAN_KEY)
+);
+
+const [saved, setSaved] = useState<Workout[]>(() =>
+  loadFromStorage(SAVED_KEY)
+);
+
+useEffect(() => {
+  localStorage.setItem(PLAN_KEY, JSON.stringify(todaysPlan));
+}, [todaysPlan]);
+
+useEffect(() => {
+  localStorage.setItem(SAVED_KEY, JSON.stringify(saved));
+}, [saved]);
 
   const isInPlan = (id: number) => todaysPlan.some((w) => w.id === id);
   const isInSaved = (id: number) => saved.some((w) => w.id === id);

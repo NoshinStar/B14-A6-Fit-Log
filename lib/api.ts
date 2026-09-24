@@ -22,8 +22,11 @@ export async function getAllWorkouts(): Promise<Workout[]> {
   return res.json();
 }
 
+import { notFound } from "next/navigation";
+
 export async function getWorkoutById(id: string): Promise<Workout> {
   const res = await fetch(`${BASE_URL}/${id}`, { cache: "no-store" });
+  if (res.status === 404) notFound();
   if (!res.ok) throw new Error("Failed to fetch workout");
   return res.json();
 }

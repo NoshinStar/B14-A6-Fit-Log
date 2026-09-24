@@ -13,7 +13,7 @@ export default function WorkoutActions({ workout }: { workout: Workout }) {
         onClick={() => addToPlan(workout)}
         className="flex items-center gap-2 bg-[#ccff00] text-black font-semibold px-5 py-3 rounded-full hover:opacity-90 transition"
       >
-        <Plus size={18} /> Add to today's plan
+        <Plus size={18} /> Add to today&apos;s plan
       </button>
       <button
         onClick={() => addToSaved(workout)}
