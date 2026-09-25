@@ -1,27 +1,34 @@
 "use client";
 
-import { Plus, Bookmark } from "lucide-react";
 import { usePlan } from "@/context/PlanContext";
 import { Workout } from "@/lib/api";
+import { Bookmark, Plus } from "lucide-react";
 
-export default function WorkoutActions({ workout }: { workout: Workout }) {
+export default function WorkoutActions({
+  workout,
+}: {
+  workout: Workout;
+}) {
   const { addToPlan, addToSaved } = usePlan();
 
   return (
-    <div className="flex gap-4">
+    <div className="flex flex-wrap items-center gap-2">
       <button
         onClick={() => addToPlan(workout)}
-        className="flex items-center gap-2 bg-[#ccff00] text-black font-semibold px-5 py-3 rounded-full hover:opacity-90 transition"
+        className="btn btn-sm btn-accent rounded-2xl"
       >
-        <Plus size={18} /> Add to today&apos;s plan
+        <Plus className="h-4 w-4" />
+        Add to Today&apos;s Plan
       </button>
+
       <button
         onClick={() => addToSaved(workout)}
-        className="flex items-center gap-2 border border-gray-600 text-white font-semibold px-5 py-3 rounded-full hover:bg-gray-900 transition"
+        className="btn btn-sm rounded-2xl border border-gray-700 text-white"
       >
-        <Bookmark size={18} /> Save for later
+        <Bookmark className="h-4 w-4" />
+        Save for Later
       </button>
-      
     </div>
   );
 }
+
