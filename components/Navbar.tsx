@@ -14,42 +14,45 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-base-300 bg-base-100/95 backdrop-blur">
-      <nav className="navbar mx-auto max-w-6xl px-4">
-        <div className="navbar-start gap-2">
+      <nav className="navbar mx-auto max-w-6xl px-2 sm:px-4">
+        <div className="navbar-start gap-1 sm:gap-2 min-w-0 flex-1">
           <div className="dropdown lg:hidden">
-            <button
-              type="button"
-              tabIndex={0}
-              className="btn btn-ghost btn-square"
-              aria-label="Open menu"
-            >
-              <Menu size={20} />
+            <button className="btn btn-ghost btn-square btn-xs sm:btn-sm">
+              <Menu className="h-4 w-4 sm:h-5 sm:w-5" />
             </button>
-            <ul
-              tabIndex={0}
-              className="menu dropdown-content menu-sm z-50 mt-3 w-52 rounded-2xl border border-base-300 bg-base-200 p-2"
-            >
+
+            <ul className="menu dropdown-content z-50 mt-3 w-52 rounded-box bg-base-100 p-2 shadow">
               <li>
-                <Link href="/">Workouts</Link>
+                <Link href="/" className={isActive("/")}>
+                  Workouts
+                </Link>
               </li>
+
               <li>
-                <Link href="/my-plan">My Plan</Link>
+                <Link href="/my-plan" className={isActive("/my-plan")}>
+                  My Plan
+                </Link>
               </li>
             </ul>
           </div>
-          <Link href="/" className="flex items-center gap-2 font-heading text-xl tracking-wide">
-            <Dumbbell size={22} className="text-primary" />
-            FitLog
+
+          <Link
+            href="/"
+            className="flex items-center gap-1 font-bold text-base sm:text-xl tracking-wide whitespace-nowrap"
+          >
+            <Dumbbell className="h-4 w-4 sm:h-6 sm:w-6 text-primary shrink-0" />
+            <span>FITLOG</span>
           </Link>
         </div>
 
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal gap-1 px-1">
+          <ul className="menu menu-horizontal px-1 gap-1">
             <li>
               <Link href="/" className={isActive("/")}>
                 Workouts
               </Link>
             </li>
+
             <li>
               <Link href="/my-plan" className={isActive("/my-plan")}>
                 My Plan
@@ -58,14 +61,27 @@ export default function Navbar() {
           </ul>
         </div>
 
-        <div className="navbar-end gap-2">
-          <Link href="/my-plan" aria-label="Today's plan" className="btn btn-ghost btn-sm gap-2">
-            Plan
-            <span className="badge badge-primary badge-sm">{todaysPlan.length}</span>
+        <div className="navbar-end gap-0 sm:gap-1 shrink-0">
+          <Link
+            href="/my-plan"
+            className="btn btn-ghost btn-xs min-h-0 h-7 sm:h-8 px-1.5 sm:px-3 gap-1"
+            aria-label={`Plan ${todaysPlan.length}`}
+          >
+            <span>Plan</span>
+            <span className="badge badge-primary badge-xs">
+              {todaysPlan.length}
+            </span>
           </Link>
-          <Link href="/my-plan" aria-label="Saved workouts" className="btn btn-ghost btn-sm gap-2">
-            Saved
-            <span className="badge badge-outline badge-sm">{saved.length}</span>
+
+          <Link
+            href="/my-plan"
+            className="btn btn-ghost btn-xs min-h-0 h-7 sm:h-8 px-1.5 sm:px-3 gap-1"
+            aria-label={`Saved ${saved.length}`}
+          >
+            <span>Saved</span>
+            <span className="badge badge-outline badge-xs">
+              {saved.length}
+            </span>
           </Link>
         </div>
       </nav>

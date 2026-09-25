@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <div>
       <Hero />
-      <div className="px-6 md:px-12 max-w-7xl mx-auto -mb-6">
+      <div className="px-6 md:px-12 max-w-7xl mx-auto mt-6 mb-6">
         <SearchBar value={query} onChange={setQuery} />
       </div>
       {loading ? (
