@@ -15,7 +15,7 @@ export default function Hero() {
           today&apos;s plan, and watch the week&apos;s work add up.
         </p>
         <a href="#library" className="btn btn-accent rounded-2xl">
-          Browse Workouts
+          BROWSE WORKOUTS
         </a>
       </div>
       
